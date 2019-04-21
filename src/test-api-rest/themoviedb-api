@@ -1,0 +1,28 @@
+
+
+## mi API 9c83e95662741cb3db09bb9d123bc66e
+
+GET https://api.themoviedb.org/3/movie/popular?api_key=9c83e95662741cb3db09bb9d123bc66e
+
+###
+
+GET https://api.themoviedb.org/3/movie/upcoming?api_key=9c83e95662741cb3db09bb9d123bc66e&language=en-US&page=1
+
+
+###
+
+GET https://api.themoviedb.org/3/movie/top_rated?api_key=9c83e95662741cb3db09bb9d123bc66e&language=en-US&page=1
+
+###
+
+### descartes
+
+GET https://api.themoviedb.org/3/genre/movie/list?api_key=9c83e95662741cb3db09bb9d123bc66e&language=en-US
+
+###
+
+GET https://api.themoviedb.org/3/movie/trending?api_key=9c83e95662741cb3db09bb9d123bc66e&language=en-US&page=1
+
+###
+
+GET https://api.themoviedb.org/3/movie/299537?api_key=9c83e95662741cb3db09bb9d123bc66e&language=en-US

@@ -1,27 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+// empleamos router nuevo https://reach.tech/router/example/basic 
+// yarn add @reach/router
+import { Router, Redirect } from "@reach/router";
+import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
+
+import MovieDetail from "./views/MovieDetail";
+import MovieList from "./views/MovieList";
+
+// yarn add node-sass
+import './App.scss';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <div className="app">
+         <Navigation />
+         <Router className='main'>
+          {/* le pasaremos el type a Navigation */}
+          {/* <MovieList path="/movies/:type" default/> */}
+          <MovieList path="/movies/:type"/>
+          <MovieDetail path="/movie/:id"/>
+          {/* pagina por defecto */}
+          <Redirect from="/" to="/movies/popular" />
+          {/* <Redirect default from='*' to='movies/popular' noThrow /> */}
+          {/* <NotFound path='notFound' /> */}
+         </Router>
+         <Footer />       
+       </div>
+          );
   }
 }
 
