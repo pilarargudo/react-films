@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
 // yarn add axios
 import axios from 'axios';
+import './MovieList.scss';
 
 import MovieCard from '../components/MovieCard';
 
 class MovieList extends Component {
+  extractType = uri => {
+    const type = uri.replace('/movies/', '').toLowerCase();
 
-  // estado inicial vacío
+    if (type === 'top_rated' || type === 'upcoming' || type === 'popular') {
+      return type;
+    } else {
+      return 'popular';
+    }
+  };
+
+   // estado inicial vacío
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -17,37 +27,35 @@ class MovieList extends Component {
     movies: [],
   };
 
-  componentDidMount(){
+  getMovies(type) {
+    let url = (_type) => `https://api.themoviedb.org/3/movie/${_type}?api_key=323112ea2281b9eb70f319f4df422c6b`;
 
-    // .then(console.log) para obtener el parametro data.results
-    axios.get('https://api.themoviedb.org/3/movie/popular?api_key=9c83e95662741cb3db09bb9d123bc66e')
-    .then( res => this.setState({movies: res.data.results}));
-      
-    // variable type  y uri a pasar en la url
-    let extractType = uri => uri.replace('/movies/','');
-    let url = (_type) => `https://api.themoviedb.org/3/movie/${_type}?api_key=9c83e95662741cb3db09bb9d123bc66e`;
-
-    axios.get( url(extractType(this.props.uri)).then( res => this.setState({movies: res.data.results})) )
-
+    return axios.get(url(type)).then(res => this.setState({ movies: res.data.results, type:type }));
   }
-
 
   render() {
-    return (
-      <section>
-        {/* hola MovieList {this.props.type} NO FUNCIONA */}
-        {/* hola MovieList {this.props.uri.replace('/movies/','')}      */}
+    const newType = this.extractType(this.props.uri)
+    if (newType !== this.state.type) {
+      this.getMovies(newType);
+      return <h1>loading movies</h1>
+    } else {
+      return (
+        <section className="MovieList">
+          <h1> {this.state.type} movies</h1>
 
-        {/* {JSON.stringify(this.state)}
-        {console.log(this.state)} */}
-        {/* key como identificador recomendado cuando empleamos map , movie es el item del array */}
-        {this.state.movies.map (movie => <MovieCard data={movie} key={movie.id} /> )}
+          <div className='movies'>
+            {this.state.movies.map(movie => (
+              <MovieCard key={movie.id} data={movie} />
+            ))}
+          </div>
+        </section>
+      );
+    }
 
 
-
-      </section>
-          );
   }
 }
+
+// const MovieList = props => <section>MovieList {JSON.stringify(props)}</section>;
 
 export default MovieList;
