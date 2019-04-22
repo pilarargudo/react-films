@@ -19,13 +19,13 @@ class App extends Component {
       <div className="app">
          <Navigation />
          <Router className='main'>
-          {/* le pasaremos el type a Navigation */}
-          {/* <MovieList path="/movies/:type" default/> */}
-          <MovieList path="/movies/:type"/>
           <MovieDetail path="/movie/:id"/>
+          {/* le pasaremos el type a Navigation */}
+          {/* <MovieList path="/movies/:type" default/> */}        
+          <MovieList path="/movies/:type"/>
           {/* pagina por defecto */}
-          <Redirect from="/" to="/movies/popular" />
-          {/* <Redirect default from='*' to='movies/popular' noThrow /> */}
+          {/* <Redirect from="/" to="/movies/popular" /> */}
+          <Redirect default from='*' to='movies/popular' noThrow />
           {/* <NotFound path='notFound' /> */}
          </Router>
          <Footer />       
