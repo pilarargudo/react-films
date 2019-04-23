@@ -16,7 +16,7 @@ class MovieList extends Component {
     }
   };
 
-   // estado inicial vacío
+  // seteamos estado  inicial vacío y que será un array
   // constructor(props) {
   //   super(props);
   //   this.state = {
