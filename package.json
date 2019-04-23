@@ -2,7 +2,7 @@
   "name": "react-films",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://pilarargudo.github.io/react-films",
+  "homepage": "https://pilarargudo.github.io/react-films",
   "dependencies": {
     "@reach/router": "^1.2.1",
     "axios": "^0.18.0",
@@ -16,7 +16,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy":"rm -rf docs && npm run build && mv build docs"
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -26,5 +27,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
 }
